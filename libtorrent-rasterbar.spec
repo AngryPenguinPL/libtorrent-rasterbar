@@ -4,7 +4,7 @@
 %define develname %mklibname %{shortname} -d
 #define _disable_ld_no_undefined 1
 %define _disable_lto 1
-%global optflags %{optflags} -lboost_python
+#global optflags %{optflags} -lboost_python
 
 Summary:	The Rasterbar BitTorrent library
 Name:		libtorrent-rasterbar
@@ -99,7 +99,7 @@ export CXXFLAGS="%{optflags} -std=c++11"
 	--enable-dht \
 	--with-boost-libdir=%{_libdir}
 sed -i -e 's,$,-fno-lto,' bindings/python/compile_flags
-%make
+%make LDFLAGS="$LDFLAGS -lboost_python"
 
 %install
 %makeinstall_std
