@@ -2,7 +2,7 @@
 %define major 9
 %define libname %mklibname %{shortname} %{major}
 %define develname %mklibname %{shortname} -d
-%define _disable_ld_no_undefined 1
+#define _disable_ld_no_undefined 1
 %define _disable_lto 1
 
 Summary:	The Rasterbar BitTorrent library
@@ -79,7 +79,6 @@ incompatible. This package contains development libraries and headers.
 %apply_patches
 
 %build
-export CFLAGS="%{optflags}" -lboost_python
 
 # build segfaults with clang 5.0 on i586 and x86_64
 #export CC=gcc
@@ -90,6 +89,7 @@ export CFLAGS="%{optflags}" -lboost_python
 #autoreconf -fi
 export PYTHON=%{__python2}
 export CXXFLAGS="%{optflags} -std=c++11"
+export CXXFLAGS="%{optflags} -lboost_python
 %configure \
 	--disable-static \
 	--enable-python-binding \
