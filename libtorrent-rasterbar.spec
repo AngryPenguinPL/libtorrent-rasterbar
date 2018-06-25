@@ -79,6 +79,7 @@ incompatible. This package contains development libraries and headers.
 %apply_patches
 
 %build
+export CFLAGS="%{optflags}" -lboost_python
 
 # build segfaults with clang 5.0 on i586 and x86_64
 #export CC=gcc
